@@ -9,7 +9,7 @@ This is an ongoing roadmap for the Codesake::Dawn source code review tool.
 
 _latest update: Mon Mar 31 13:01:21 CEST 2014_
 
-## Version 1.2.0
+## Version 2.0.0
 
 * create a task to check for new CVE in NVD website
 * SQLite3 integration for saving data. Each project will have its own SQLite
@@ -25,9 +25,6 @@ _latest update: Mon Mar 31 13:01:21 CEST 2014_
   https://bugs.ruby-lang.org/projects/ruby/wiki/ReleaseEngineering
 * add source code metrics gathering (lines of code, lines of comments,
   cyclomatic complexity index, ...)
-
-## Version 1.3.0
-
 * Add support for ERB for in detect\_views
 * Add preliminary javascript support
 * adding test for CVE-2011-4969  XSS in jquery < 1.6.2
@@ -40,7 +37,7 @@ _latest update: Mon Mar 31 13:01:21 CEST 2014_
 * Add support for github hooks
 * Add premilinary SQL injection detection for Ruby on Rails
 
-## Version 1.5.0
+## Version 2.5.0
 
 * Add insecure direct object reference detection for all MVC frameworks (including Rack)
 * SQL Injection detection: it must be done for all MVC frameworks (including Rack)
