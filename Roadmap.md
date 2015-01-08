@@ -7,7 +7,7 @@ frameworks.
 
 This is an ongoing roadmap for the Codesake::Dawn source code review tool.
 
-_latest update: Mon Mar 31 13:01:21 CEST 2014_
+_latest update: Thu Jun 26 07:46:55 CEST 2014_
 
 ## Version 2.0.0
 
@@ -25,6 +25,8 @@ _latest update: Mon Mar 31 13:01:21 CEST 2014_
   https://bugs.ruby-lang.org/projects/ruby/wiki/ReleaseEngineering
 * add source code metrics gathering (lines of code, lines of comments,
   cyclomatic complexity index, ...)
+
+* Integrate a JS parser to detect DOM based XSS
 * Add support for ERB for in detect\_views
 * Add preliminary javascript support
 * adding test for CVE-2011-4969  XSS in jquery < 1.6.2
@@ -41,8 +43,11 @@ _latest update: Mon Mar 31 13:01:21 CEST 2014_
 
 * Add insecure direct object reference detection for all MVC frameworks (including Rack)
 * SQL Injection detection: it must be done for all MVC frameworks (including Rack)
+
+## Version 3.0.0
+
 * Add automatic mitigation patch generation
-* Add support for Javascript
+
 
 # Spinoff projects
 
@@ -51,8 +56,9 @@ however are wrote in a plenty of great technologies deserving a good tool for
 security scan.
 
 Node.js and Go are very promising programming languages and a tool similiar to
-Codesake::Dawn can be wrote also to support them:
+Codesake::Dawn can be wrote also but in a spinoff project.
 
-Initially they were in the Codesake::Dawn roadmap for a 2.0.0 version. However
-we decide to drop this in the name of being focused on ruby programming
-language.
+PHP has a good open source code scanners ecosystem, instead JAVA has not.
+Players started open and eventually they turned in big commercial bloatware
+GUIs that are useless from the security specialist perspective. A simple
+bytecode analyzer, with some checks, can be a possible spinoff project.

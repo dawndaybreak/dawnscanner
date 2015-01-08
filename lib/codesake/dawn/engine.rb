@@ -26,17 +26,8 @@ module Codesake
 
       # Typical MVC elements here
 
-      # Each view will be something like {:filename=>"target/views/index.haml", :language=>:haml}
       attr_reader :views
-
-      # Each controller will be a little bit more complex. Of course for
-      # Sinatra, the controller filename will be the sole web application ruby
-      # file.
-      # {:filename=>"target/controllers/this_controller.rb", :actions=>[{:name=>"index", :method=>:get, :map=>"/"]}
       attr_reader :controllers
-
-      # Models I don't know right now. Let them initialized as Array... we
-      # will see later 
       attr_reader :models
 
       attr_accessor :debug
@@ -46,8 +37,12 @@ module Codesake
 
       attr_accessor :disable_dependency_checks
 
-      def initialize(dir=nil, name="", options={})
-        @name = name
+      attr_reader   :filenames
+      attr_reader   :sources
+
+      def initialize(options={})
+        @name = "noname"
+        @name = options[:name] unless options[:name].nil?
         @scan_start = Time.now
         @scan_stop = @scan_start
         @mvc_version = ""
@@ -67,23 +62,22 @@ module Codesake
         @gemfile_lock_sudo = false
         @disable_dependency_checks = false
 
-        set_target(dir) unless dir.nil?
-        @ruby_version = get_ruby_version if dir.nil?
+        set_target(options[:target]) unless options[:target].nil?
+        @ruby_version = get_ruby_version if options[:target].nil?
         @gemfile_lock = options[:gemfile_name] unless options[:gemfile_name].nil? 
 
-        @views        = detect_views 
-        @controllers  = detect_controllers
-        @models       = detect_models
 
         if $logger.nil?
           $logger  = Codesake::Commons::Logging.instance
+            $logger.toggle_syslog
           $logger.helo "dawn-engine", Codesake::Dawn::VERSION
 
         end
         $logger.warn "pattern matching security checks are disabled for Gemfile.lock scan" if @name == "Gemfile.lock"
         $logger.warn "combo security checks are disabled for Gemfile.lock scan" if @name == "Gemfile.lock"
-        debug_me "engine is in debug mode" 
+        debug_me "engine is in debug mode"
 
+        @filenames = collect_filenames
         if @name == "Gemfile.lock" && ! options[:guessed_mvc].nil?
           # since all checks relies on @name a Gemfile.lock engine must
           # impersonificate the engine for the mvc it was detected
@@ -97,8 +91,16 @@ module Codesake
 
       end
 
-      def detect_views
-        []
+      def collect_filenames
+        rb_files = File.join("#{@target}", "**/*.rb")
+        erb_files = File.join("#{@target}", "**/*.erb")
+        haml_files = File.join("#{@target}", "**/*.haml")
+        @filenames = Dir.glob(rb_files)
+        @filenames += Dir.glob(erb_files)
+        @filenames += Dir.glob(haml_files)
+
+        @filenames
+
       end
       def error!
         @error = true
@@ -119,13 +121,7 @@ module Codesake
         ret
       end
 
-      def detect_controllers
-        []
-      end
 
-      def detect_models
-        []
-      end
 
       def get_ruby_version
         unless @target.nil?

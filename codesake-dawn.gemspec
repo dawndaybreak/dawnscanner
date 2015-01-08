@@ -25,7 +25,6 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency "codesake-commons", "~> 1.0.0"
   gem.add_dependency 'cvss'
-  gem.add_dependency 'haml'
   gem.add_dependency 'parser'
   gem.add_dependency 'ptools'
   gem.add_dependency 'ruby_parser'
@@ -33,11 +32,12 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'grit'
   gem.add_dependency 'terminal-table'
   gem.add_dependency 'justify'
+  gem.add_dependency 'haml'
 
   gem.add_dependency ('coveralls')
 
   gem.add_development_dependency 'rake'
-  gem.add_development_dependency 'rspec'
+  gem.add_development_dependency 'rspec', "~> 2.13.0"
   gem.add_development_dependency('tomdoc')
   gem.add_development_dependency('aruba')
   gem.add_development_dependency('simplecov')
