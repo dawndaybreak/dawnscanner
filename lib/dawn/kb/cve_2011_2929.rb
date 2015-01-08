@@ -1,3 +1,4 @@
+module Dawn
 		module Kb
 			# Automatically created with rake on 2013-07-12
 			class CVE_2011_2929

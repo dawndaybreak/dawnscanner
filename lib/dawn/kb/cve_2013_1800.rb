@@ -1,3 +1,4 @@
+module Dawn
     module Kb
       class CVE_2013_1800  
         include DependencyCheck

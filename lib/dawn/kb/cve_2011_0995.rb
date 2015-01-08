@@ -1,3 +1,4 @@
+module Dawn
 		module Kb
 
       class CVE_2011_0995_a

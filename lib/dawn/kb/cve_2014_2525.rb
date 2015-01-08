@@ -1,3 +1,4 @@
+module Dawn
 		module Kb
       class CVE_2014_2525_a
         include Dawn::Core::Kb::BasicCheck

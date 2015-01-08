@@ -1,3 +1,4 @@
+module Dawn
 		module Kb
 			class CVE_2008_4310_a
         include RubyVersionCheck
