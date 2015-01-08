@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe "The Codesake::Core" do
+describe "The Core" do
   describe "#find_conf" do
     it "returns path name if true passed" do
-      Codesake::Dawn::Utils.find_conf(true).should_not be_nil
+      Dawn::Utils.find_conf(true).should_not be_nil
     end
   end
 end

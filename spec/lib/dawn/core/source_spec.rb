@@ -2,7 +2,7 @@ require 'spec_helper'
 
 
 
-describe "The Codesake::Dawn::Core::Source class" do
+describe "The Dawn::Core::Source class" do
   before(:all) do
     @content=<<EOF
 class Test
@@ -35,7 +35,7 @@ EOF
     f.puts @content
     end
 
-    @source = Codesake::Dawn::Core::Source.new({:filename=>"./test.rb", :debug=>true})
+    @source = Dawn::Core::Source.new({:filename=>"./test.rb", :debug=>true})
   end
   after(:all) do
     File.delete("./test.rb")
