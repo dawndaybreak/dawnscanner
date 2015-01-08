@@ -54,3 +54,4 @@ XML documents with carefully crafted entity expansion strings which can cause th
 				end
 			end
 		end
+end
