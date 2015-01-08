@@ -45,9 +45,9 @@ EOF
       f.puts @source2
     end
 
-    @source = Codesake::Dawn::Core::Source.new({:filename=>"./open_uri_with_ssl.rb", :debug=>true})
-    @src2 = Codesake::Dawn::Core::Source.new({:filename=>"./open_uri_with_veriy_peer_const.rb", :debug=>true})
-    @check = Codesake::Dawn::Kb::SSLVerificationBypass.new
+    @source = Dawn::Core::Source.new({:filename=>"./open_uri_with_ssl.rb", :debug=>true})
+    @src2 = Dawn::Core::Source.new({:filename=>"./open_uri_with_veriy_peer_const.rb", :debug=>true})
+    @check = Dawn::Kb::SSLVerificationBypass.new
     @check.debug = true
   end
   after(:all) do

@@ -1,12 +1,11 @@
+require 'dawn/engine'
+module Dawn
+  class Rails
+    include Dawn::Engine
 
-module Codesake
-  module Dawn
-    class Rails
-      include Dawn::Engine
 
-
-      def initialize(options={})
-        super(options)
-      end
+    def initialize(options={})
+      super(options)
     end
   end
+end
