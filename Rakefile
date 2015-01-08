@@ -48,8 +48,7 @@ namespace :version do
 
     File.open("./lib/dawn/version.rb", "w") do |f|
 
-      f.puts("module Codesake")
-      f.puts("  module Dawn")
+      f.puts("module Dawn")
 
       if branch_name != "master"
         av = version.split('.')
@@ -63,7 +62,6 @@ namespace :version do
       end
       f.puts "    BUILD = \"#{build_number.chop}\""
       f.puts "    COMMIT = \"#{commit_hash.chop}\""
-      f.puts "  end"
       f.puts "end"
     end
   end
