@@ -1,3 +1,4 @@
+# Core KB
 require "dawn/core/kb/basic_check"
 require "dawn/kb/pattern_match_check"
 require "dawn/kb/dependency_check"
