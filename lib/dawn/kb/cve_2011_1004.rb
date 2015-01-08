@@ -1,5 +1,3 @@
-module Codesake
-	module Dawn
 		module Kb
 			# Automatically created with rake on 2014-01-08
 			class CVE_2011_1004
@@ -14,7 +12,7 @@ module Codesake
             :cwe=>"59",
             :owasp=>"A9", 
             :applies=>["rails", "sinatra", "padrino"],
-            :kind=>Codesake::Dawn::KnowledgeBase::RUBY_VERSION_CHECK,
+            :kind=>Dawn::KnowledgeBase::RUBY_VERSION_CHECK,
             :message=>message,
             :mitigation=>"Please upgrade ruby interpreter up to the latest version available",
             :aux_links=>["ihttp://www.ruby-lang.org/en/news/2011/02/18/fileutils-is-vulnerable-to-symlink-race-attacks/"]
@@ -32,5 +30,3 @@ module Codesake
 				end
 			end
 		end
-	end
-end

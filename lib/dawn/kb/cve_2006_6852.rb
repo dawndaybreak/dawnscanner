@@ -1,5 +1,3 @@
-module Codesake
-	module Dawn
 		module Kb
 			# Automatically created with rake on 2014-01-07
 			class CVE_2006_6852
@@ -14,7 +12,7 @@ module Codesake
             :cwe=>"",
             :owasp=>"A9", 
             :applies=>["rails", "sinatra", "padrino"],
-            :kind=>Codesake::Dawn::KnowledgeBase::DEPENDENCY_CHECK,
+            :kind=>Dawn::KnowledgeBase::DEPENDENCY_CHECK,
             :message=>message,
             :mitigation=>"Please upgrade tdiary version to the latest version.",
             :aux_links=>["http://www.tdiary.org/20061210.html"]
@@ -25,5 +23,3 @@ module Codesake
 				end
 			end
 		end
-	end
-end

@@ -1,5 +1,3 @@
-module Codesake
-	module Dawn
 		module Kb
 			# Automatically created with rake on 2013-05-06
 			class CVE_2012_6497
@@ -15,7 +13,7 @@ module Codesake
             :cwe=>"200",
             :owasp=>"A9", 
             :applies=>["rails"],
-            :kind=>Codesake::Dawn::KnowledgeBase::DEPENDENCY_CHECK,
+            :kind=>Dawn::KnowledgeBase::DEPENDENCY_CHECK,
             :message=>message,
             :mitigation=>"Please upgrade rails version to the latest stable rails version.",
             :aux_links=>["https://groups.google.com/d/topic/rubyonrails-security/DCNTNp_qjFM/discussion"]
@@ -26,5 +24,3 @@ module Codesake
 				end
 			end
 		end
-	end
-end

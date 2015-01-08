@@ -1,5 +1,3 @@
-module Codesake
-	module Dawn
 		module Kb
 			# Automatically created with rake on 2013-05-27
 			class CVE_2013_1947
@@ -14,7 +12,7 @@ module Codesake
             :cwe=>"78",
             :owasp=>"A9", 
             :applies=>["rails", "padrino", "sinatra"],
-            :kind=>Codesake::Dawn::KnowledgeBase::DEPENDENCY_CHECK,
+            :kind=>Dawn::KnowledgeBase::DEPENDENCY_CHECK,
             :message=>message,
             :mitigation=>"Please upgrade kelredd-pruview version to the latest version available.",
             :aux_links=>["http://www.openwall.com/lists/oss-security/2013/04/10/3"]
@@ -25,5 +23,3 @@ module Codesake
 				end
 			end
 		end
-	end
-end

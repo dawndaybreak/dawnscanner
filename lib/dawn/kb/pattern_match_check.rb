@@ -1,10 +1,9 @@
-require 'ptools'
 
 module Codesake
   module Dawn
     module Kb
       module PatternMatchCheck
-        include Codesake::Dawn::Core::Kb::BasicCheck
+        include Dawn::Core::Kb::BasicCheck
 
 
         attr_reader   :attack_pattern
@@ -126,4 +125,3 @@ module Codesake
       end
     end
   end
-end

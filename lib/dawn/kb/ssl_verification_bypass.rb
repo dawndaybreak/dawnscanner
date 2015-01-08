@@ -1,17 +1,16 @@
-require 'ruby_parser'
 
 module Codesake
   module Dawn
     module Kb
       class SSLVerificationBypass
-        include Codesake::Dawn::Core::Kb::SourceCheck
+        include Dawn::Core::Kb::SourceCheck
 
         def initialize
           super({
             :name=>"SSL Verification Bypass",
             :severity=>:high,
             :priority=>:high,
-            :kind=>Codesake::Dawn::KnowledgeBase::SOURCE_CHECK,
+            :kind=>Dawn::KnowledgeBase::SOURCE_CHECK,
             :applies=>["sinatra", "padrino", "rails", "rack"]
           })
 
@@ -44,4 +43,3 @@ module Codesake
       end
     end
   end
-end

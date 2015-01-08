@@ -1,8 +1,7 @@
-module Codesake
   module Dawn
     module Kb
       module DependencyCheck
-        include Codesake::Dawn::Core::Kb::BasicCheck
+        include Dawn::Core::Kb::BasicCheck
 
         attr_accessor :dependencies
 
@@ -49,7 +48,7 @@ module Codesake
               end
 
               if dep[:name] == safe_dep[:name]
-                v = Codesake::Dawn::Kb::VersionCheck.new(
+                v = Dawn::Kb::VersionCheck.new(
                   {
                     :safe=>safe_dep[:version],
                     :detected=>dep[:version],
@@ -83,4 +82,3 @@ module Codesake
       end
     end
   end
-end

@@ -1,8 +1,7 @@
-module Codesake
   module Dawn
     module Kb
       module OperatingSystemCheck
-        include Codesake::Dawn::Core::Kb::BasicCheck
+        include Dawn::Core::Kb::BasicCheck
 
         # safe_os is an Hash with this form {:family=>"", :vendor=>"", :version=>""}
         #
@@ -95,4 +94,3 @@ module Codesake
       end
     end
   end
-end

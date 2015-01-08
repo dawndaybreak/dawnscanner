@@ -1,4 +1,3 @@
-module Codesake
 	module Dawn
 		module Kb
 			# Automatically created with rake on 2014-04-17
@@ -17,7 +16,7 @@ module Codesake
             :cwe=>"",
             :owasp=>"A9",
             :applies=>["rack", "sinatra", "padrino", "rails"],
-            :kind=>Codesake::Dawn::KnowledgeBase::DEPENDENCY_CHECK,
+            :kind=>Dawn::KnowledgeBase::DEPENDENCY_CHECK,
             :message=>message,
             :mitigation=>"Please upgrade sfpagent version at least to 0.4.15. As a general rule, using the latest stable version is recommended.",
             :aux_links=>["http://seclists.org/oss-sec/2014/q2/118"]
@@ -28,4 +27,3 @@ module Codesake
 			end
 		end
 	end
-end

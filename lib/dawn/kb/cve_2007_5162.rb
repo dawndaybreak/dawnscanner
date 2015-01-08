@@ -1,5 +1,3 @@
-module Codesake
-	module Dawn
 		module Kb
 			# Automatically created with rake on 2014-01-09
 			class CVE_2007_5162
@@ -15,7 +13,7 @@ module Codesake
             :cwe=>"287",
             :owasp=>"A9", 
             :applies=>["rails", "sinatra", "padrino"],
-            :kind=>Codesake::Dawn::KnowledgeBase::RUBY_VERSION_CHECK,
+            :kind=>Dawn::KnowledgeBase::RUBY_VERSION_CHECK,
             :message=>message,
             :mitigation=>"Upgrade your ruby interpreter",
             :aux_links=>["http://svn.ruby-lang.org/cgi-bin/viewvc.cgi?view=rev&revision=13504"]
@@ -26,5 +24,3 @@ module Codesake
 				end
 			end
 		end
-	end
-end

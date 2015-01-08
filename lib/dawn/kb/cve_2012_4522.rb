@@ -1,5 +1,3 @@
-module Codesake
-	module Dawn
 		module Kb
 			# Automatically created with rake on 2013-07-15
 			class CVE_2012_4522
@@ -14,7 +12,7 @@ module Codesake
             :cwe=>"264",
             :owasp=>"A9", 
             :applies=>["rails", "sinatra", "padrino"],
-            :kind=>Codesake::Dawn::KnowledgeBase::RUBY_VERSION_CHECK,
+            :kind=>Dawn::KnowledgeBase::RUBY_VERSION_CHECK,
             :message=>message,
             :mitigation=>"Upgrade ruby interpreter to latest 1.9.3 patchset or even better use ruby 2.x",
             :aux_links=>["http://www.ruby-lang.org/en/news/2012/10/12/poisoned-NUL-byte-vulnerability/"]
@@ -25,5 +23,3 @@ module Codesake
 				end
 			end
 		end
-	end
-end

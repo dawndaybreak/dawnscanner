@@ -1,5 +1,3 @@
-module Codesake
-	module Dawn
 		module Kb
 			# Automatically created with rake on 2014-02-06
 			class CVE_2013_0183
@@ -14,7 +12,7 @@ module Codesake
             :cwe=>"119",
             :owasp=>"A9", 
             :applies=>["rails", "sinatra", "padrino"],
-            :kind=>Codesake::Dawn::KnowledgeBase::DEPENDENCY_CHECK,
+            :kind=>Dawn::KnowledgeBase::DEPENDENCY_CHECK,
             :message=>message,
             :mitigation=>"Please upgrade rack version up to version 1.3.8 or 1.4.3 or higher.",
             :aux_links=>["https://groups.google.com/forum/#%21topic/rack-devel/7ZKPNAjgRSs"]
@@ -23,5 +21,3 @@ module Codesake
 				end
 			end
 		end
-	end
-end

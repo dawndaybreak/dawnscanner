@@ -1,4 +1,3 @@
-module Codesake
 	module Dawn
 		module Kb
 			# Automatically created with rake on 2014-07-04
@@ -16,7 +15,7 @@ module Codesake
             :cwe=>"",
             :owasp=>"A9",
             :applies=>["rack", "sinatra", "padrino", "rails"],
-            :kind=>Codesake::Dawn::KnowledgeBase::DEPENDENCY_CHECK,
+            :kind=>Dawn::KnowledgeBase::DEPENDENCY_CHECK,
             :message=>message,
             :mitigation=>"We are not currently aware of a solution for this vulnerability. Please check backup_checksum gem for security updates.",
             :aux_links=>["http://www.vapid.dhs.org/advisories/backup_checksum-3.0.23.html"]
@@ -27,4 +26,3 @@ module Codesake
 			end
 		end
 	end
-end

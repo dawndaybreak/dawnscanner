@@ -1,5 +1,3 @@
-module Codesake
-	module Dawn
 		module Kb
 			# Automatically created with rake on 2014-02-07
 			class CVE_2013_2512
@@ -15,7 +13,7 @@ module Codesake
             :cwe=>"",
             :owasp=>"A9", 
             :applies=>["rails", "sinatra", "padrino"],
-            :kind=>Codesake::Dawn::KnowledgeBase::DEPENDENCY_CHECK,
+            :kind=>Dawn::KnowledgeBase::DEPENDENCY_CHECK,
             :message=>message,
             :mitigation=>"To mitigate this vulnerability you must upgrade ftpd gem version to 0.2.2 or higher.",
             :aux_links=>["http://packetstormsecurity.com/files/120618/Ruby-Gem-ftpd-0.2.1-Remote-Command-Execution.html"]
@@ -24,5 +22,3 @@ module Codesake
 				end
 			end
 		end
-	end
-end

@@ -1,8 +1,7 @@
-module Codesake
   module Dawn
     module Kb
       class VersionCheck
-        include Codesake::Dawn::Core::Kb::BasicCheck
+        include Dawn::Core::Kb::BasicCheck
 
         attr_accessor :safe
         attr_accessor :deprecated
@@ -415,4 +414,3 @@ module Codesake
       end
     end
   end
-end

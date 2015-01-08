@@ -1,5 +1,3 @@
-module Codesake
-	module Dawn
 		module Kb
 			# Automatically created with rake on 2013-12-17
 			class CVE_2013_4478
@@ -14,7 +12,7 @@ module Codesake
             :cwe=>"94", 
             :owasp=>"A9",
             :applies=>["rails", "padrino", "sinatra"],
-            :kind => Codesake::Dawn::KnowledgeBase::DEPENDENCY_CHECK,
+            :kind => Dawn::KnowledgeBase::DEPENDENCY_CHECK,
             :message => message,
             :mitigation=>"Please upgrade sup rubygem",
             :aux_links => ["http://www.openwall.com/lists/oss-security/2013/10/30/2"]
@@ -24,5 +22,3 @@ module Codesake
 				end
 			end
 		end
-	end
-end

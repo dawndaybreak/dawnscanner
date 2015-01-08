@@ -1,5 +1,3 @@
-module Codesake
-	module Dawn
 		module Kb
 			# Automatically created with rake on 2013-07-15
 			class CVE_2012_5380
@@ -14,7 +12,7 @@ module Codesake
             :cwe=>"426",
             :owasp=>"A9", 
             :applies=>["rails", "sinatra", "padrino"],
-            :kind=>Codesake::Dawn::KnowledgeBase::RUBY_VERSION_CHECK,
+            :kind=>Dawn::KnowledgeBase::RUBY_VERSION_CHECK,
             :message=>message,
             :mitigation=>"Upgrade ruby to the latest 1.9.3 patch or even better use ruby 2.x",
             :aux_links=>["https://www.htbridge.com/advisory/HTB23108"]
@@ -26,5 +24,3 @@ module Codesake
 				end
 			end
 		end
-	end
-end

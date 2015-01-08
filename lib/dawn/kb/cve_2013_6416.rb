@@ -1,5 +1,3 @@
-module Codesake
-	module Dawn
 		module Kb
 			# Automatically created with rake on 2013-12-12
 			class CVE_2013_6416
@@ -15,7 +13,7 @@ module Codesake
             :cwe=>"79",
             :owasp=>"A9", 
             :applies=>["rails"],
-            :kind=>Codesake::Dawn::KnowledgeBase::DEPENDENCY_CHECK,
+            :kind=>Dawn::KnowledgeBase::DEPENDENCY_CHECK,
             :message=>message,
             :mitigation=>"Please upgrade rails to version 4.0.2. As a general rule, using the latest stable version is recommended. Versions 3.x are not affected",
             :aux_links=>["https://groups.google.com/forum/message/raw?msg=ruby-security-ann/5ZI1-H5OoIM/ZNq4FoR2GnIJ"]
@@ -27,5 +25,3 @@ module Codesake
 				end
 			end
 		end
-	end
-end

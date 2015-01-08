@@ -1,5 +1,3 @@
-module Codesake
-	module Dawn
 		module Kb
 			# Automatically created with rake on 2013-05-27
 			class CVE_2013_1911
@@ -14,7 +12,7 @@ module Codesake
             :cwe=>"20",
             :owasp=>"A9", 
             :applies=>["rails", "padrino", "sinatra"],
-            :kind=>Codesake::Dawn::KnowledgeBase::DEPENDENCY_CHECK,
+            :kind=>Dawn::KnowledgeBase::DEPENDENCY_CHECK,
             :message=>message,
             :mitigation=>"Please upgrade ldoce version to the latest version available.",
             :aux_links=>["http://archives.neohapsis.com/archives/bugtraq/2013-04/0010.html"]
@@ -26,5 +24,3 @@ module Codesake
 				end
 			end
 		end
-	end
-end

@@ -1,8 +1,7 @@
-module Codesake
   module Dawn
     module Kb
       module RubyVersionCheck
-        include Codesake::Dawn::Core::Kb::BasicCheck
+        include Dawn::Core::Kb::BasicCheck
         # Array of hashes in the {:engine=>"ruby", :version=>"1.9.3", :patchlevel=>"p342"} form
         attr_accessor   :safe_rubies
         # Hash in the {:engine=>"ruby", :version=>"1.9.3", :patchlevel=>"p342"} form
@@ -22,7 +21,7 @@ module Codesake
             vv_p << ss[:patchlevel].split("p")[1].to_i
           end
 
-          version_check = Codesake::Dawn::Kb::VersionCheck.new(:safe=>vv_a,:detected=>detected_ruby[:version], :debug=>@debug, :save_major=>true)
+          version_check = Dawn::Kb::VersionCheck.new(:safe=>vv_a,:detected=>detected_ruby[:version], :debug=>@debug, :save_major=>true)
 
           vengine = self.is_vulnerable_engine?(detected_ruby[:engine], vv_e)
           vv = version_check.vuln?
@@ -88,4 +87,3 @@ module Codesake
     end
   end
 end
-

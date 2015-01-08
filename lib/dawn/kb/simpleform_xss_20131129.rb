@@ -1,4 +1,3 @@
-module Codesake
 	module Dawn
 		module Kb
 			# Automatically created with rake on 2013-12-11
@@ -15,7 +14,7 @@ module Codesake
             :cwe=>"",
             :owasp=>"A9", 
             :applies=>["rails", "padrino", "sinatra"],
-            :kind=>Codesake::Dawn::KnowledgeBase::DEPENDENCY_CHECK,
+            :kind=>Dawn::KnowledgeBase::DEPENDENCY_CHECK,
             :message=>message,
             :mitigation=>"Please upgrade Simple Form the 3.0.1 and 2.1.1 releases are available at the normal locations.",
             :aux_links=>["https://groups.google.com/forum/#!topic/ruby-security-ann/flHbLMb07tE"]
@@ -27,4 +26,3 @@ module Codesake
 			end
 		end
 	end
-end

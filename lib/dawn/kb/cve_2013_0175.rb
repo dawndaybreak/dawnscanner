@@ -1,5 +1,3 @@
-module Codesake
-	module Dawn
 		module Kb
 			# Automatically created with rake on 2013-05-21
 			class CVE_2013_0175
@@ -15,7 +13,7 @@ module Codesake
             :cwe=>"20", 
             :owasp=>"A9",
             :applies=>["rails", "sinatra", "padrino"],
-            :kind => Codesake::Dawn::KnowledgeBase::DEPENDENCY_CHECK,
+            :kind => Dawn::KnowledgeBase::DEPENDENCY_CHECK,
             :message => message,
             :mitigation=>"Please upgrade multi_xml gem or grape gem",
             :aux_links => ["https://groups.google.com/forum/?fromgroups=#%21topic/ruby-grape/fthDkMgIOa0"]
@@ -25,5 +23,3 @@ module Codesake
 				end
 			end
 		end
-	end
-end

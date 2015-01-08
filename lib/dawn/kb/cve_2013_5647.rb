@@ -1,5 +1,3 @@
-module Codesake
-	module Dawn
 		module Kb
 			# Automatically created with rake on 2014-01-14
 			class CVE_2013_5647
@@ -15,7 +13,7 @@ module Codesake
             :cwe=>"94",
             :owasp=>"A9", 
             :applies=>["sinatra", "padrino", "rails"],
-            :kind=>Codesake::Dawn::KnowledgeBase::DEPENDENCY_CHECK,
+            :kind=>Dawn::KnowledgeBase::DEPENDENCY_CHECK,
             :message=>message,
             :mitigation=>"Please upgrade sounder version up to 1.0.1. As a general rule, using the latest stable version is recommended.",
             :aux_links=>["http://vapid.dhs.org/advisories/sounder-ruby-gem-cmd-inj.html"]
@@ -27,5 +25,3 @@ module Codesake
 				end
 			end
 		end
-	end
-end

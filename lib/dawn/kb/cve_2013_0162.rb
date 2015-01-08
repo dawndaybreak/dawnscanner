@@ -1,5 +1,3 @@
-module Codesake
-	module Dawn
 		module Kb
 			# Automatically created with rake on 2014-01-14
 			class CVE_2013_0162
@@ -15,7 +13,7 @@ module Codesake
             :cwe=>"264",
             :owasp=>"A9", 
             :applies=>["sinatra", "padrino", "rails"],
-            :kind=>Codesake::Dawn::KnowledgeBase::DEPENDENCY_CHECK,
+            :kind=>Dawn::KnowledgeBase::DEPENDENCY_CHECK,
             :message=>message,
             :mitigation=>"Please upgrade ruby_parser version to 3.1.1. As a general rule, using the latest stable version is recommended.",
             :aux_links=>["https://bugzilla.redhat.com/show_bug.cgi?id=892806"]
@@ -26,5 +24,3 @@ module Codesake
 				end
 			end
 		end
-	end
-end

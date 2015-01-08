@@ -1,4 +1,3 @@
-module Codesake
 	module Dawn
 		module Kb
 			# Automatically created with rake on 2014-07-04
@@ -15,7 +14,7 @@ module Codesake
             :cwe=>"",
             :owasp=>"A9",
             :applies=>["rack", "sinatra", "padrino", "rails"],
-            :kind=>Codesake::Dawn::KnowledgeBase::DEPENDENCY_CHECK,
+            :kind=>Dawn::KnowledgeBase::DEPENDENCY_CHECK,
             :message=>message,
             :mitigation=>"We are not currently aware of a solution for this vulnerability. Keep track on kajam gem updates",
             :aux_links=>["http://www.vapid.dhs.org/advisories/kajam-1.0.3.rc2-2nd-vuln.html"]
@@ -26,4 +25,3 @@ module Codesake
 			end
 		end
 	end
-end

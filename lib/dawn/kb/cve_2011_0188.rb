@@ -1,5 +1,3 @@
-module Codesake
-	module Dawn
 		module Kb
 			# Automatically created with rake on 2014-01-08
 
@@ -12,7 +10,7 @@ module Codesake
 
           super({
             :name=>"CVE-2011-0995_a",
-            :kind=>Codesake::Dawn::KnowledgeBase::RUBY_VERSION_CHECK,
+            :kind=>Dawn::KnowledgeBase::RUBY_VERSION_CHECK,
           })
 
           self.safe_rubies = [
@@ -31,7 +29,7 @@ module Codesake
 
         super({
             :name=>"CVE-2011-0188_b",
-            :kind=>Codesake::Dawn::KnowledgeBase::OS_CHECK,
+            :kind=>Dawn::KnowledgeBase::OS_CHECK,
           })
 
           self.safe_os = [
@@ -55,7 +53,7 @@ module Codesake
             :cwe=>"189",
             :owasp=>"A9", 
             :applies=>["sinatra", "padrino", "rails"],
-            :kind=>Codesake::Dawn::KnowledgeBase::COMBO_CHECK,
+            :kind=>Dawn::KnowledgeBase::COMBO_CHECK,
             :message=>message,
             :mitigation=>"Please upgrade your ruby interpreter",
             :aux_links=>["https://bugzilla.redhat.com/show_bug.cgi?id=682332"],
@@ -65,5 +63,3 @@ module Codesake
 				end
 			end
 		end
-	end
-end

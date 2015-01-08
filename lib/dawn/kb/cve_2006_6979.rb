@@ -1,5 +1,3 @@
-module Codesake
-	module Dawn
 		module Kb
 			# Automatically created with rake on 2014-01-07
 			class CVE_2006_6979
@@ -15,7 +13,7 @@ module Codesake
             :cwe=>"20",
             :owasp=>"A9", 
             :applies=>["rails", "sinatra", "padrino"],
-            :kind=>Codesake::Dawn::KnowledgeBase::DEPENDENCY_CHECK,
+            :kind=>Dawn::KnowledgeBase::DEPENDENCY_CHECK,
             :message=>message,
             :mitigation=>"It seems there is no real workaround but not using amarok in your project. If it's needed, please sanitize your code before passing input to Magnatune component",
             :aux_links=>["http://www.securityfocus.com/bid/22568"]
@@ -27,5 +25,3 @@ module Codesake
 				end
 			end
 		end
-	end
-end

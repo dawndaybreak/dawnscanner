@@ -1,5 +1,3 @@
-module Codesake
-	module Dawn
 		module Kb
 			# Automatically created with rake on 2013-05-17
 			class CVE_2013_2615
@@ -14,7 +12,7 @@ module Codesake
             :cwe=>"94",
             :owasp=>"A9", 
             :applies=>["rails", "sinatra", "padrino"],
-            :kind=>Codesake::Dawn::KnowledgeBase::DEPENDENCY_CHECK,
+            :kind=>Dawn::KnowledgeBase::DEPENDENCY_CHECK,
             :message=>message,
             :mitigation=>"Please upgrade fastreader gem to a newer version",
             :aux_links=>["http://seclists.org/fulldisclosure/2013/Mar/122"]
@@ -25,5 +23,3 @@ module Codesake
 				end
 			end
 		end
-	end
-end

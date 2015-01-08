@@ -1,8 +1,7 @@
-module Codesake
   module Dawn
     module Kb
       class DeprecationCheck
-        include Codesake::Dawn::Core::Kb::BasicCheck
+        include Dawn::Core::Kb::BasicCheck
 
         DEPRECATION_MATRIX = [
           # {:gem=>"rails", :versions=>['0.x', '1.x', '2.x']},
@@ -23,7 +22,7 @@ module Codesake
 
         def vuln?
           debug_me "vuln? @detected is #{@detected}"
-          v = Codesake::Dawn::Kb::VersionCheck.new
+          v = Dawn::Kb::VersionCheck.new
           v.debug = self.debug
           v.detected = @detected[:version]
 
@@ -37,4 +36,3 @@ module Codesake
       end
     end
   end
-end

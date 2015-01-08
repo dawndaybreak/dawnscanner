@@ -1,5 +1,3 @@
-module Codesake
-	module Dawn
 		module Kb
 			# Automatically created with rake on 2013-05-20
 			class CVE_2013_1656
@@ -16,7 +14,7 @@ module Codesake
             :cwe=>"20", 
             :owasp=>"A9",
             :applies=>["rails", "sinatra", "padrino"],
-            :kind => Codesake::Dawn::KnowledgeBase::DEPENDENCY_CHECK,
+            :kind => Dawn::KnowledgeBase::DEPENDENCY_CHECK,
             :message => message,
             :mitigation=>"Please upgrade Spree commerce rubygem",
             :aux_links => ["http://spreecommerce.com/blog/multiple-security-vulnerabilities-fixed"]
@@ -26,5 +24,3 @@ module Codesake
 				end
 			end
 		end
-	end
-end

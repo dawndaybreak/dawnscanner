@@ -1,5 +1,3 @@
-module Codesake
-	module Dawn
 		module Kb
 			# Automatically created with rake on 2014-01-10
 			class CVE_2013_7086
@@ -14,7 +12,7 @@ module Codesake
             :cwe=>"94",
             :owasp=>"A9", 
             :applies=>["rails", "sinatra", "padrino"],
-            :kind=>Codesake::Dawn::KnowledgeBase::DEPENDENCY_CHECK,
+            :kind=>Dawn::KnowledgeBase::DEPENDENCY_CHECK,
             :message=>message,
             :mitigation=>"Please upgrade webbynode up to version 1.0.5.3",
             :aux_links=>["http://xforce.iss.net/xforce/xfdb/89705"]
@@ -25,5 +23,3 @@ module Codesake
 				end
 			end
 		end
-	end
-end

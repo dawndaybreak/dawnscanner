@@ -1,5 +1,3 @@
-module Codesake
-  module Dawn
     module Kb
       class CVE_2013_1800  
         include DependencyCheck
@@ -15,7 +13,7 @@ module Codesake
                 :cwe=>"264",
                 :owasp=>"A9", 
                 :applies=>["sinatra", "padrino", "rails"],
-                :kind=>Codesake::Dawn::KnowledgeBase::DEPENDENCY_CHECK,
+                :kind=>Dawn::KnowledgeBase::DEPENDENCY_CHECK,
                 :message=>message,
                 :mitigation=>"Please use crack gem version 0.3.2 or above. Correct your gemfile"
           })
@@ -24,5 +22,3 @@ module Codesake
 
       end
     end
-  end
-end

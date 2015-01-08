@@ -1,5 +1,3 @@
-module Codesake
-	module Dawn
 		module Kb
 			class CVE_2008_4310_a
         include RubyVersionCheck
@@ -7,7 +5,7 @@ module Codesake
           message = "CVE_2008_4310_a: ruby 1.8.1 and 1.8.5 have problems"
           super({
             :name=>"CVE-2008_4310_a",
-            :kind=>Codesake::Dawn::KnowledgeBase::RUBY_VERSION_CHECK,
+            :kind=>Dawn::KnowledgeBase::RUBY_VERSION_CHECK,
           })
           self.safe_rubies = [
             {:engine=>"ruby", :version=>"1.8.1", :patchlevel=>"p999"}, 
@@ -25,7 +23,7 @@ module Codesake
 
           super({
             :name=>"CVE-2008_4310_b",
-            :kind=>Codesake::Dawn::KnowledgeBase::OS_CHECK,
+            :kind=>Dawn::KnowledgeBase::OS_CHECK,
           })
 
             self.safe_os=[
@@ -88,7 +86,7 @@ module Codesake
             :cwe=>"399",
             :owasp=>"A9", 
             :applies=>["sinatra", "padrino", "rails"],
-            :kind=>Codesake::Dawn::KnowledgeBase::COMBO_CHECK,
+            :kind=>Dawn::KnowledgeBase::COMBO_CHECK,
             :message=>message,
             :mitigation=>"Please upgrade your ruby interpreter",
             :aux_links=>["http://secunia.com/advisories/33013"],
@@ -99,5 +97,3 @@ module Codesake
 			end
 		end
 	end
-end
-
