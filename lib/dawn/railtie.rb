@@ -1,4 +1,3 @@
-module Codesake
   module Dawn
     class Railtie < Rails::Railtie
       rake_tasks do
@@ -6,4 +5,3 @@ module Codesake
       end
     end
   end
-end

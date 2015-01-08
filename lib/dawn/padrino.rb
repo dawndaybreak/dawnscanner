@@ -1,8 +1,7 @@
-require 'ruby_parser'
 module Codesake
   module Dawn
     class Padrino
-      include Codesake::Dawn::Engine
+      include Dawn::Engine
 
       attr_reader :apps
 
@@ -53,7 +52,7 @@ module Codesake
                 end
 
                 target = File.dirname(sinatra_app_rb )
-                apps << Codesake::Dawn::Sinatra.new({:target=>target, :mp=>mp, :debug=>@debug})
+                apps << Dawn::Sinatra.new({:target=>target, :mp=>mp, :debug=>@debug})
               end
             rescue Racc::ParseError => e
               debug_me(e.message)
@@ -79,4 +78,3 @@ module Codesake
 
     end
   end
-end

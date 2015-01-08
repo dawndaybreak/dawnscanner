@@ -1,10 +1,9 @@
-require "codesake/dawn/engine"
 require 'ruby_parser'
 
 module Codesake
   module Dawn
     class Sinatra
-      include Codesake::Dawn::Engine
+      include Dawn::Engine
 
       attr_reader :sinks
       attr_reader :appname
@@ -24,14 +23,14 @@ module Codesake
         @controllers = []
         @models = []
         @filenames.each do |ff|
-          s = Codesake::Dawn::Core::Source.new({:filename=>ff, :debug=>@debug, :auto_detect=>true, :mvc=>:sinatra})
+          s = Dawn::Core::Source.new({:filename=>ff, :debug=>@debug, :auto_detect=>true, :mvc=>:sinatra})
           s.find_sinks
-          @appname      = ff if s.kind == Codesake::Dawn::Core::Source::MAIN_APP
-          @views        << s if s.kind == Codesake::Dawn::Core::Source::VIEW
-          @controllers  << s if s.kind == Codesake::Dawn::Core::Source::CONTROLLER
-          @models       << s if s.kind == Codesake::Dawn::Core::Source::MODEL
+          @appname      = ff if s.kind == Dawn::Core::Source::MAIN_APP
+          @views        << s if s.kind == Dawn::Core::Source::VIEW
+          @controllers  << s if s.kind == Dawn::Core::Source::CONTROLLER
+          @models       << s if s.kind == Dawn::Core::Source::MODEL
           @sources      << s
-          if s.kind != Codesake::Dawn::Core::Source::VIEW
+          if s.kind != Dawn::Core::Source::VIEW
             @total_lines += s.total_lines
           end
         end
@@ -48,4 +47,3 @@ module Codesake
       end
     end
   end
-end

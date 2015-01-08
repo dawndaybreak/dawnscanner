@@ -1,9 +1,8 @@
-require "codesake/dawn/engine"
 
 module Codesake
   module Dawn
     class Rails
-      include Codesake::Dawn::Engine
+      include Dawn::Engine
 
 
       def initialize(options={})
@@ -11,4 +10,3 @@ module Codesake
       end
     end
   end
-end

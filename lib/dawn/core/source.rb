@@ -1,4 +1,3 @@
-require 'ruby_parser'
 require 'haml'
 require 'erb'
 
@@ -12,7 +11,7 @@ module Codesake
       # This class models everything deserves to be parsed for further
       # inspection.
       class Source
-        include Codesake::Dawn::Debug
+        include Dawn::Debug
 
         SCRIPT      = :script
         CLASS       = :class
@@ -51,9 +50,9 @@ module Codesake
           @kind = auto_detect if ! options[:auto_detect].nil? && options[:auto_detect ]
 
           if $logger.nil?
-            $logger  = Codesake::Commons::Logging.instance
+            $logger  = Commons::Logging.instance
             $logger.toggle_syslog
-            $logger.helo "dawn-source", Codesake::Dawn::VERSION
+            $logger.helo "dawn-source", Dawn::VERSION
           end
 
           begin
@@ -191,4 +190,3 @@ module Codesake
       end
     end
   end
-end

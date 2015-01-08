@@ -1,4 +1,3 @@
-require "yaml"
 
 module Codesake
   module Dawn
@@ -6,7 +5,7 @@ module Codesake
 
       # TODO.20140326
       # All those methods must moved from here to Util class and a
-      # Codesake::Dawn::Core namespace must be created.
+      # Dawn::Core namespace must be created.
       def self.help
         puts "Usage: dawn [options] target_directory"
         printf "\nExamples:\n"
@@ -31,7 +30,7 @@ module Codesake
         printf "\n       --disable-code-style\t\t\tdisable all code style checks"
         printf "\n       --disable-owasp-ror-cheatsheet\t\tdisable all Owasp Ruby on Rails cheatsheet checks"
         printf "\n       --disable-owasp-top-10\t\t\tdisable all Owasp Top 10 checks"
-        printf "\n\nFlags useful to query Codesake::Dawn\n"
+        printf "\n\nFlags useful to query Dawn\n"
         printf "\n   -S, --search-knowledge-base [check_name]\tsearch check_name in the knowledge base"
         printf "\n       --list-knowledge-base\t\t\tlist knowledge-base content"
         printf "\n       --list-known-families\t\t\tlist security check families contained in dawn's knowledge base"
@@ -46,7 +45,7 @@ module Codesake
       end
 
       def self.dump_knowledge_base(verbose = false)
-        kb = Codesake::Dawn::KnowledgeBase.new
+        kb = Dawn::KnowledgeBase.new
         lines = []
         lines << "Security checks currently supported:\n"
 
@@ -100,11 +99,11 @@ module Codesake
         lockfile = Bundler::LockfileParser.new(Bundler.read_file("Gemfile.lock"))
         Dir.chdir(my_dir)
         lockfile.specs.each do |s|
-          return Codesake::Dawn::Rails.new(target)    if s.name == "rails"
-          return Codesake::Dawn::Padrino.new(target)  if s.name == "padrino"
+          return Dawn::Rails.new(target)    if s.name == "rails"
+          return Dawn::Padrino.new(target)  if s.name == "padrino"
         end
 
-        return Codesake::Dawn::Sinatra.new(target)
+        return Dawn::Sinatra.new(target)
       end
 
       def self.is_good_target?(target)
@@ -125,14 +124,14 @@ module Codesake
           return fn if File.exist?(fn)
         end
 
-        # Codesake::Dawn didn't find a config file.
+        # Dawn didn't find a config file.
         # If create_if_none flag is set to false, than I'll return nil so the
         # read_conf method will return the default configuration
         return nil unless create_if_none
 
         # If create_if_none flag is set to true, than I'll create a config file
         # on the current directory with the default configuration.
-        conf = {"config"=>{:verbose=>false, :output=>"console", :mvc=>"", :gemfile_scan=>false, :gemfile_name=>"", :filename=>nil, :debug=>false, :exit_on_warn => false, :enabled_checks=> Codesake::Dawn::Kb::BasicCheck::ALLOWED_FAMILIES}}
+        conf = {"config"=>{:verbose=>false, :output=>"console", :mvc=>"", :gemfile_scan=>false, :gemfile_name=>"", :filename=>nil, :debug=>false, :exit_on_warn => false, :enabled_checks=> Dawn::Kb::BasicCheck::ALLOWED_FAMILIES}}
 
         # Calculate the conf file path
         conf_path = File.expand_path('~') +'/.'+conf_name
@@ -146,7 +145,7 @@ module Codesake
       end
 
       def self.read_conf(file=nil)
-        conf = {:verbose=>false, :output=>"console", :mvc=>"", :gemfile_scan=>false, :gemfile_name=>"", :filename=>nil, :debug=>false, :exit_on_warn => false, :enabled_checks=> Codesake::Dawn::Kb::BasicCheck::ALLOWED_FAMILIES}
+        conf = {:verbose=>false, :output=>"console", :mvc=>"", :gemfile_scan=>false, :gemfile_name=>"", :filename=>nil, :debug=>false, :exit_on_warn => false, :enabled_checks=> Dawn::Kb::BasicCheck::ALLOWED_FAMILIES}
         begin
           return conf if file.nil?
           file = file.chop if (not file.nil? and file.end_with? '/')
@@ -172,4 +171,3 @@ module Codesake
       end
     end
   end
-end

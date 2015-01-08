@@ -1,4 +1,3 @@
-module Codesake
   module Dawn
     module Debug
 
@@ -18,4 +17,3 @@ module Codesake
       end
     end
   end
-end

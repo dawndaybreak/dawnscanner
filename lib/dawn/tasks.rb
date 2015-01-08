@@ -1,4 +1,3 @@
-require 'rake'
 
 namespace :dawn do
 
@@ -24,4 +23,3 @@ namespace :dawn do
   task :run do
     system "dawn ."
   end
-end
