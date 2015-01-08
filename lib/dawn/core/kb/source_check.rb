@@ -41,85 +41,83 @@ class Array
   end
 end
 
-module Codesake
-  module Dawn
-    module Core
-      module Kb
-        module SourceCheck
-          include Codesake::Dawn::Core::Kb::BasicCheck
+module Dawn
+  module Core
+    module Kb
+      module SourceCheck
+        include Dawn::Core::Kb::BasicCheck
 
 
-          attr_accessor     :source_ast
-          attr_accessor     :vulnerable_ast
+        attr_accessor     :source_ast
+        attr_accessor     :vulnerable_ast
 
-          def initialize(options={})
-            super(options)
-            @vulnerable_ast = options[:vulnerable_ast] unless options[:vulnerable_ast].nil?
-            @source_ast     = options[:source_ast] unless options[:source_ast].nil?
+        def initialize(options={})
+          super(options)
+          @vulnerable_ast = options[:vulnerable_ast] unless options[:vulnerable_ast].nil?
+          @source_ast     = options[:source_ast] unless options[:source_ast].nil?
+        end
+
+        # s(:call, nil, :require, s(:str, "net/http"))
+        def are_preconditions_met?(elem)
+          a = true
+          elem[:pre_conditions].each do |e|
+            a = a && is_this_precondition_met?(e)
+            # debug_me "evaluating pre condition: #{e.inspect}. met?: #{a}"
+            return true if a && elem[:pre_conditions_operand] == :or
+            return false if !a && elem[:pre_conditions_operand] == :and
           end
 
-          # s(:call, nil, :require, s(:str, "net/http"))
-          def are_preconditions_met?(elem)
-            a = true
-            elem[:pre_conditions].each do |e|
-              a = a && is_this_precondition_met?(e)
-              # debug_me "evaluating pre condition: #{e.inspect}. met?: #{a}"
-              return true if a && elem[:pre_conditions_operand] == :or
-              return false if !a && elem[:pre_conditions_operand] == :and
+          # debug_me "are_preconditions_met?(#{elem}): #{a}"
+          return a
+        end
+
+        # canary is either a target variable and a method parameter we don't
+        # want to use
+        def is_this_precondition_met?(e)
+          @source_ast.deep_each do |sexp|
+            # debug_me("src=#{sexp.inspect} - dst=#{e.inspect}: #{sexp.inspect == e.inspect}")
+            if e.sexp_type == :lasgn && sexp.sexp_type == :lasgn
+              canary_var = (e.entries[1] == :canary)
+              # debug_me "#{sexp.entries[2]} vs #{e.entries[2]}: likeness is #{sexp.entries[2].to_a.sounds_like(e.entries[2].to_a)}"
+              return true if sexp.entries[2].to_a.sounds_like(e.entries[2].to_a) > 0.60
             end
-
-            # debug_me "are_preconditions_met?(#{elem}): #{a}"
-            return a
+            if e.sexp_type == :attrasgn && sexp.sexp_type == :attrasgn
+              return true if (e.entries[2] == sexp.entries[2]) && (e.entries[3].to_a == sexp.entries[3].to_a)
+            end
+            return true if sexp == e
           end
+          debug_me "precondition #{e.entries} not matched"
+          false
+        end
 
-          # canary is either a target variable and a method parameter we don't
-          # want to use
-          def is_this_precondition_met?(e)
-            @source_ast.deep_each do |sexp|
-              # debug_me("src=#{sexp.inspect} - dst=#{e.inspect}: #{sexp.inspect == e.inspect}")
-              if e.sexp_type == :lasgn && sexp.sexp_type == :lasgn
-                canary_var = (e.entries[1] == :canary)
-                # debug_me "#{sexp.entries[2]} vs #{e.entries[2]}: likeness is #{sexp.entries[2].to_a.sounds_like(e.entries[2].to_a)}"
-                return true if sexp.entries[2].to_a.sounds_like(e.entries[2].to_a) > 0.60
-              end
-              if e.sexp_type == :attrasgn && sexp.sexp_type == :attrasgn
+        def is_vulerable_code?(e)
+          @source_ast.deep_each do |sexp|
+            # constant declaration (e.g. OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE)
+            if (e.sexp_type == :cdecl) && (sexp.sexp_type == :cdecl)
+              return true if (e.entries[1].to_a == sexp.entries[1].to_a) && (e.entries[2].to_a == sexp.entries[2].to_a)
+            end
+            # class attribute assignment (e.g. request.use_ssl = true)
+            if (e.sexp_type == :attrasgn) && (sexp.sexp_type == :attrasgn)
+              if e.entries[1].to_a[2] == :canary
+                return true if (e.entries[2] == sexp.entries[2]) && (e.entries[3].to_a == sexp.entries[3].to_a)
+              else
                 return true if (e.entries[2] == sexp.entries[2]) && (e.entries[3].to_a == sexp.entries[3].to_a)
               end
-              return true if sexp == e
             end
-            debug_me "precondition #{e.entries} not matched"
-            false
           end
+          false
+        end
 
-          def is_vulerable_code?(e)
-            @source_ast.deep_each do |sexp|
-              # constant declaration (e.g. OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE)
-              if (e.sexp_type == :cdecl) && (sexp.sexp_type == :cdecl)
-                return true if (e.entries[1].to_a == sexp.entries[1].to_a) && (e.entries[2].to_a == sexp.entries[2].to_a)
-              end
-              # class attribute assignment (e.g. request.use_ssl = true)
-              if (e.sexp_type == :attrasgn) && (sexp.sexp_type == :attrasgn)
-                if e.entries[1].to_a[2] == :canary
-                  return true if (e.entries[2] == sexp.entries[2]) && (e.entries[3].to_a == sexp.entries[3].to_a)
-                else
-                  return true if (e.entries[2] == sexp.entries[2]) && (e.entries[3].to_a == sexp.entries[3].to_a)
-                end
-              end
+        def vuln?
+          @vulnerable_ast.each do |vuln_elem|
+            pre = are_preconditions_met?(vuln_elem)
+            found = is_vulerable_code?(vuln_elem[:ast]) if pre
+            if pre && found
+              debug_me "*** SOURCE CODE IS VULNERABLE ***"
+              return true
             end
-            false
           end
-
-          def vuln?
-            @vulnerable_ast.each do |vuln_elem|
-              pre = are_preconditions_met?(vuln_elem)
-              found = is_vulerable_code?(vuln_elem[:ast]) if pre
-              if pre && found
-                debug_me "*** SOURCE CODE IS VULNERABLE ***"
-                return true
-              end
-            end
-            false
-          end
+          false
         end
       end
     end
