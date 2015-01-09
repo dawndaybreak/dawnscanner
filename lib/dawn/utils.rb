@@ -1,3 +1,5 @@
+require 'bundler'
+
 module Dawn
   class Utils
 
@@ -133,8 +135,8 @@ module Dawn
       lockfile = Bundler::LockfileParser.new(Bundler.read_file("Gemfile.lock"))
       Dir.chdir(my_dir)
       lockfile.specs.each do |s|
-        return Dawn::Rails.new(target)    if s.name == "rails"
-        return Dawn::Padrino.new(target)  if s.name == "padrino"
+        return Dawn::Rails.new({:target=>target, :debug=>debug, :name=>"rails"})    if s.name == "rails"
+        return Dawn::Padrino.new({:target=>target, :debug=>debug, :name=>"rails"})  if s.name == "padrino"
       end
 
       return Dawn::Sinatra.new(target)
