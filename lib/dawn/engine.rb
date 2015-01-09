@@ -231,7 +231,7 @@ module Dawn
 
       @checks.each do |check|
         if check.name == name
-          unless ((check.kind == Dawn::KnowledgeBase::PATTERN_MATCH_CHECK || check.kind == Codesake::Dawn::KnowledgeBase::COMBO_CHECK ) && @name == "Gemfile.lock")
+          unless ((check.kind == Dawn::KnowledgeBase::PATTERN_MATCH_CHECK || check.kind == Dawn::KnowledgeBase::COMBO_CHECK ) && @name == "Gemfile.lock")
             debug_me "applying check #{check.name}" 
             @applied_checks += 1
             @applied << { :name=>name }
@@ -282,7 +282,7 @@ module Dawn
       end
 
       @checks.each do |check|
-        unless ((check.kind == Dawn::KnowledgeBase::PATTERN_MATCH_CHECK || check.kind == Codesake::Dawn::KnowledgeBase::COMBO_CHECK ) && @gemfile_lock_sudo)
+        unless ((check.kind == Dawn::KnowledgeBase::PATTERN_MATCH_CHECK || check.kind == Dawn::KnowledgeBase::COMBO_CHECK ) && @gemfile_lock_sudo)
 
           @applied << { :name => name }
           debug_me "applying check #{check.name}"
