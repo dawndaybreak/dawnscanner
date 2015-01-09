@@ -180,7 +180,7 @@ module Dawn
 
       # If create_if_none flag is set to true, than I'll create a config file
       # on the current directory with the default configuration.
-      conf = {"config"=>{:verbose=>false, :output=>"console", :mvc=>"", :gemfile_scan=>false, :gemfile_name=>"", :filename=>nil, :debug=>false, :exit_on_warn => false, :enabled_checks=> Dawn::Kb::BasicCheck::ALLOWED_FAMILIES}}
+      conf = {"config"=>{:verbose=>false, :output=>"console", :mvc=>"", :gemfile_scan=>false, :gemfile_name=>"", :filename=>nil, :debug=>false, :exit_on_warn => false, :enabled_checks=> Dawn::Core::Kb::BasicCheck::ALLOWED_FAMILIES}}
 
       # Calculate the conf file path
       conf_path = File.expand_path('~') +'/.'+conf_name
@@ -194,7 +194,7 @@ module Dawn
     end
 
     def self.read_conf(file=nil)
-      conf = {:verbose=>false, :output=>"console", :mvc=>"", :gemfile_scan=>false, :gemfile_name=>"", :filename=>nil, :debug=>false, :exit_on_warn => false, :enabled_checks=> Dawn::Kb::BasicCheck::ALLOWED_FAMILIES}
+      conf = {:verbose=>false, :output=>"console", :mvc=>"", :gemfile_scan=>false, :gemfile_name=>"", :filename=>nil, :debug=>false, :exit_on_warn => false, :enabled_checks=> Dawn::Core::Kb::BasicCheck::ALLOWED_FAMILIES}
       file = file.chop if (not file.nil? and file.end_with? '/')
       begin
         return conf if file.nil?

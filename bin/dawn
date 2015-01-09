@@ -7,7 +7,7 @@ require 'terminal-table'
 require 'justify'
 
 require 'codesake-commons'
-require 'codesake-dawn'
+require 'dawnscanner'
 
 APPNAME = File.basename($0)
 LIST_KNOWN_FRAMEWORK  = %w(rails sinatra padrino)
@@ -58,7 +58,7 @@ opts.quiet=true
 engine  = nil
 
 
-options = Codesake::Dawn::Utils.read_conf(Codesake::Dawn::Utils.find_conf(true))
+options = Dawn::Utils.read_conf(Dawn::Utils.find_conf(true))
 check = ""
 guess = {:name=>"", :version=>"", :connected_gems=>[]}
 
@@ -66,10 +66,10 @@ begin
 opts.each do |opt, val|
   case opt
   when '--version'
-    puts "#{Codesake::Dawn::VERSION} (build: #{Codesake::Dawn::BUILD}) [#{Codesake::Dawn::CODENAME}]"
+    puts "#{Dawn::VERSION} (build: #{Dawn::BUILD}) [#{Codesake::Dawn::CODENAME}]"
     Kernel.exit(0)
   when '--config-file'
-    options = Codesake::Dawn::Utils.read_conf(val)
+    options = Dawn::Utils.read_conf(val)
   when '--disable-cve-bulletins'
     options[:enabled_checks].delete(:cve_bulletin)
   when '--disable-code-quality'
@@ -90,8 +90,8 @@ opts.each do |opt, val|
     options[:enabled_checks].delete(:owasp_top_10_9)
     options[:enabled_checks].delete(:owasp_top_10_10)
   when '--list-known-families'
-    printf "Codesake::Dawn supports following check families:\n\n"
-    puts Codesake::Dawn::Kb::BasicCheck.families
+    printf "Dawn supports following check families:\n\n"
+    puts Dawn::Kb::BasicCheck.families
     Kernel.exit(0)
   when '--json'
     options[:output] = "json"
@@ -111,7 +111,7 @@ opts.each do |opt, val|
     options[:gemfile_scan] = true
     unless val.empty?
       options[:gemfile_name] = val
-      guess = Codesake::Dawn::Utils.guess_mvc(val)
+      guess = Dawn::Utils.guess_mvc(val)
     end
   when '--verbose'
     options[:verbose]=true
@@ -123,13 +123,13 @@ opts.each do |opt, val|
     options[:exit_on_warn] = true
 
   when '--search-knowledge-base'
-    found = Codesake::Dawn::KnowledgeBase.find(nil, val)
+    found = Dawn::KnowledgeBase.find(nil, val)
     puts "#{val} found in knowledgebase." if found
     puts "#{val} not found in knowledgebase" if ! found
     Kernel.exit(0)
 
   when '--list-knowledge-base'
-    puts Codesake::Dawn::Utils.dump_knowledge_base(options[:verbose])
+    puts Dawn::Utils.dump_knowledge_base(options[:verbose])
     Kernel.exit(0)
   when '--list-known-framework'
     puts "Ruby MVC framework supported by #{APPNAME}:"
@@ -138,21 +138,21 @@ opts.each do |opt, val|
     end
     Kernel.exit(0)
   when '--help'
-    Kernel.exit(Codesake::Dawn::Utils.help)
+    Kernel.exit(Dawn::Utils.help)
   end
 end
 rescue GetoptLong::InvalidOption => e
-  $logger.helo APPNAME, Codesake::Dawn::VERSION
+  $logger.helo APPNAME, Dawn::VERSION
   $logger.err e.message
-  Kernel.exit(Codesake::Dawn::Utils.help)
+  Kernel.exit(Dawn::Utils.help)
 end
 
 target=ARGV.shift
 
-$logger.helo APPNAME, Codesake::Dawn::VERSION
+$logger.helo APPNAME, Dawn::VERSION
 trap("INT")   { $logger.die('[INTERRUPTED]') }
 $logger.die("missing target") if target.nil? && options[:gemfile_name].empty?
-$logger.die("invalid directory (#{target})") if options[:gemfile_name].empty?  &&! Codesake::Dawn::Utils.is_good_target?(target)
+$logger.die("invalid directory (#{target})") if options[:gemfile_name].empty?  &&! Dawn::Utils.is_good_target?(target)
 $logger.die("if scanning Gemfile.lock file you must not force target MVC using one from -r, -s or -p flag") if ! options[:mvc].empty? && options[:gemfile_scan]
 $logger.debug("security check enabled: #{options[:enabled_checks]}") if options[:debug]
 
@@ -163,19 +163,19 @@ $logger.debug("security check enabled: #{options[:enabled_checks]}") if options[
 unless options[:gemfile_scan]
   begin
     if options[:mvc].empty?
-      engine = Codesake::Dawn::Utils.detect_mvc(target, options[:debug])
+      engine = Dawn::Utils.detect_mvc(target, options[:debug])
       $logger.debug("using #{engine.class.name} engine via autodetect") if options[:debug]
     else
-      engine = Codesake::Dawn::Rails.new({:target=>target, :debug=>options[:debug], :name=>"rails"})        if options[:mvc] == :rails
-      engine = Codesake::Dawn::Sinatra.new({:target=>target, :debug=>options[:debug], :name=>"sinatra"})    if options[:mvc] == :sinatra
-      engine = Codesake::Dawn::Padrino.new({:target=>target, :debug=>options[:debug], :name=>"padrino"})    if options[:mvc] == :padrino
+      engine = Dawn::Rails.new({:target=>target, :debug=>options[:debug], :name=>"rails"})        if options[:mvc] == :rails
+      engine = Dawn::Sinatra.new({:target=>target, :debug=>options[:debug], :name=>"sinatra"})    if options[:mvc] == :sinatra
+      engine = Dawn::Padrino.new({:target=>target, :debug=>options[:debug], :name=>"padrino"})    if options[:mvc] == :padrino
     end
   rescue ArgumentError => e
     $logger.err(e.message)
     $logger.die("ruby framework auto detect failed. Please force if rails, sinatra or padrino with -r, -s or -p flags") if engine.nil?
   end
 else
-  engine = Codesake::Dawn::GemfileLock.new(target, options[:gemfile_name], guess) # if options[:gemfile_scan]
+  engine = Dawn::GemfileLock.new(target, options[:gemfile_name], guess) # if options[:gemfile_scan]
 end
 
 $logger.die("ruby framework auto detect failed. Please force if rails, sinatra or padrino with -r, -s or -p flags") if engine.nil?
@@ -194,7 +194,7 @@ if options[:debug]
 end
 
 $logger.die "missing target framework option" if engine.nil?
-$logger.warn "this is a development Codesake::Dawn version" if Codesake::Dawn::RELEASE == "(development)"
+$logger.warn "this is a development Dawn version" if Dawn::RELEASE == "(development)"
 $logger.die "nothing to do on #{target}" if ! options[:gemfile_scan] && !engine.disable_dependency_checks && ! engine.can_apply?
 
 if engine.disable_dependency_checks
@@ -211,5 +211,5 @@ if options[:output] == "count"
   Kernel.exit(0)
 end
 
-Codesake::Dawn::Reporter.new({:engine=>engine, :apply_all_code=>ret, :format=>options[:output].to_sym, :filename=>options[:filename]}).report
+Dawn::Reporter.new({:engine=>engine, :apply_all_code=>ret, :format=>options[:output].to_sym, :filename=>options[:filename]}).report
 $logger.bye
