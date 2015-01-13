@@ -59,7 +59,9 @@ module Dawn
           debug_me("#{File.basename(__FILE__)}@#{__LINE__}: analyzing #{filename}: search is #{@negative_search}")
           matches = []
           begin
-            matches = run(load_file(filename)) if File.exists?(filename) && File.file?(filename) && ! File.binary?(filename) && ! must_exclude?(filename)
+            # matches = run(load_file(filename)) if File.exists?(filename) && File.file?(filename) && ! File.binary?(filename) && ! must_exclude?(filename)
+            # XXX: we must check if binary? was removed by File class - 20150109
+            matches = run(load_file(filename)) if File.exists?(filename) && File.file?(filename) && ! must_exclude?(filename)
             found = ! matches.empty?
           rescue ArgumentError => e
             puts "Skipping pattern match check for #{filename}: #{e.message}"
