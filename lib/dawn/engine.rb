@@ -347,8 +347,8 @@ module Dawn
       (@reflected_xss.count != 0) unless @reflected_xss.nil?
     end
 
-    def count_vulnerabilities
-      ret = 0 
+    def coun_vulnerabilities
+      ret = 0
       ret = @vulnerabilities.count unless @vulnerabilities.nil?
       ret +=  @reflected_xss.count unless @reflected_xss.nil?
 
