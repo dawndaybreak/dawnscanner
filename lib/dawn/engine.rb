@@ -276,6 +276,7 @@ module Dawn
         return false
       end
       if @checks.empty?
+        $logger.bug "__FILE__@__LINE__: checks variable is empty. No checks were loaded but KB was correctly instanciated"
         @scan_stop = Time.now
         debug_me("SCAN STOPPED: #{@scan_stop}")
         return false
