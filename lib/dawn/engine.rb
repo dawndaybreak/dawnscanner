@@ -260,8 +260,6 @@ module Dawn
     end
 
     def apply_all
-      @scan_start = Time.now
-      debug_me("SCAN STARTED: #{@scan_start}")
       # FIXME.20140325
       # Now if no checks are loaded because knowledge base was not previously called, apply and apply_all proudly refuse to run.
       # Reason is simple, load_knowledge_base now needs enabled check array
@@ -306,10 +304,46 @@ module Dawn
           @skipped_checks += 1
         end
       end
-      @scan_stop = Time.now
-      debug_me("SCAN STOPPED: #{@scan_stop}")
 
       true
+
+    end
+
+    ##
+    # This is where all the magic happens. Binary script will call this method
+    # to engage engines and start the source code analysis process.
+    #
+    # Analysis is triggered in stages (by now atomic stages, you cannot run a
+    # single stage per scan by now... maybe in the future):
+    #
+    # stage 1:  information gathering - engine will collect statistics about
+    #           source code (lines of code, comments density, cyclomatic
+    #           complexity index, orphaned code...)
+    # stage 2:  dependency analysis - engine will apply knowledge base checks
+    #           to third parties libraries used by the application. This is the
+    #           only behaviour dawnscanner had in version 1.2 and earlier
+    # stage 3:  source code parsing - engine will parse ruby, haml, markdown
+    #           and erb code to build ASTs.
+    # stage 4:  xss scan - engine will look for Cross site scriptings
+    # stage 5:  injection flow scan - engine will look the code for either SQL,
+    #           LDAP, OS commands and other kind of injections that are
+    #           possible due to lack of input sanitization.
+    #
+    # Params
+    # stage   - the stage the engine must run. Unused now, placed here just for
+    # future references.
+    #
+    # Returns
+    # true if all stages were successfully completed, false otherwise.
+    def scan(stage=nil)
+      @scan_start = Time.now
+      debug_me("SCAN STARTED: #{@scan_start}")
+
+      # stage 2. Applying all security checks
+      apply_all
+
+      @scan_stop = Time.now
+      debug_me("SCAN STOPPED: #{@scan_stop}")
 
     end
 
