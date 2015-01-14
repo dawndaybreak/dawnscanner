@@ -6,7 +6,7 @@
         @ret = false
 
         @filename = options[:filename]
-        @ret = options[:apply_all_code] unless options[:apply_all_code].nil?
+        @ret = options[:scan_code] unless options[:scan_code].nil?
         @format = options[:format] unless options[:format].nil?
         @engine = options[:engine] unless options[:engine].nil?
 
