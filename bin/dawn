@@ -203,7 +203,7 @@ if engine.disable_dependency_checks
 end
 
 engine.load_knowledge_base(options[:enabled_checks])
-ret = engine.apply_all
+ret = engine.scan
 
 if options[:output] == "count"
   puts (ret)? engine.vulnerabilities.count : "-1" unless options[:output] == "json"
@@ -211,5 +211,5 @@ if options[:output] == "count"
   Kernel.exit(0)
 end
 
-Dawn::Reporter.new({:engine=>engine, :apply_all_code=>ret, :format=>options[:output].to_sym, :filename=>options[:filename]}).report
+Dawn::Reporter.new({:engine=>engine, :scan_code=>ret, :format=>options[:output].to_sym, :filename=>options[:filename]}).report
 $logger.bye
