@@ -260,13 +260,6 @@ module Dawn
     end
 
     def apply_all
-      # FIXME.20140325
-      # Now if no checks are loaded because knowledge base was not previously called, apply and apply_all proudly refuse to run.
-      # Reason is simple, load_knowledge_base now needs enabled check array
-      # and I don't want to pollute engine API to propagate this value. It's
-      # a param to load_knowledge_base and then bin/dawn calls it
-      # accordingly.
-      # load_knowledge_base if @checks.nil?
       if @checks.nil?
         $logger.err "you must load knowledge base before trying to apply security checks"
         @scan_stop = Time.now
