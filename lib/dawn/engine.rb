@@ -200,14 +200,14 @@ module Dawn
       "#{@mvc_version}" if is_good_mvc? 
     end
 
-    ## Security stuff applies here
+    ##
     #
-    # Public it applies a single security check given by its name
+    # It applies a single security check given by its name
     #
     # name - the security check to be applied
     #
     # Examples
-    #   
+    #
     #   engine.apply("CVE-2013-1800") 
     #   # => boolean
     #
